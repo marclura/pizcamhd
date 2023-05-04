@@ -8,7 +8,9 @@
       <section id="button_container">
          <button id="vflip">vflip</button>
          <button id="hflip">hflip</button>
-         <button id="start_preview">start preview</button>
+         <button id="start_preview" >start preview</button>
+         <label for="framerate">framerate</label>
+         <input type="number" min="0" max="1000" value="30" id="framerate" name="framerate">
          <h2>Various</h2>
          <button id="video_denoise">Video denoise</button>
          <button id="video_stabilization">Video Stabilization</button>
@@ -67,13 +69,34 @@
          <input type="range" min="-100" max="100" value="0" class="slider" id="contrast" name="contrast">
          <label for="brightness">Brightness</label>
          <input type="range" min="0" max="100" value="50" class="slider" id="brightness" name="brightness">
+         <label for="saturation">Saturation</label>
+         <input type="range" min="-100" max="100" value="50" class="slider" id="saturation" name="saturation">
          <label for="sharpness">Sharpness</label>
          <input type="range" min="-100" max="100" value="0" class="slider" id="sharpness" name="sharpness">
+         <h2>Effects</h2>
+         <button id="image_effect_none">none</button>
+         <button id="image_effect_negative">negative</button>
+         <button id="image_effect_solarize">solarize</button>
+         <button id="image_effect_sketch">sketch</button>
+         <button id="image_effect_denoise">denoise</button>
+         <button id="image_effect_emboss">emboss</button>
+         <button id="image_effect_oilpaint">oilpaint</button>
+         <button id="image_effect_hatch">hatch</button>
+         <button id="image_effect_gpen">gpen</button>
+         <button id="image_effect_pastel">pastel</button>
+         <button id="image_effect_watercolor">watercolor</button>
+         <button id="image_effect_film">film</button>
+         <button id="image_effect_blur">blur</button>
+         <button id="image_effect_saturation">saturation</button>
+         <button id="image_effect_colorswap">colorswap</button>
+         <button id="image_effect_washedout">washedout</button>
+         <button id="image_effect_posterise">posterise</button>
+         <button id="image_effect_colorpoint">colorpoint</button>
+         <button id="image_effect_colorbalance">colorbalance</button>
+         <button id="image_effect_cartoon">cartoon</button>
+         <button id="image_effect_deinterlace1">deinterlace1</button>
+         <button id="image_effect_deinterlace2">deinterlace2</button>
          
-         
-
-
-
 
       </section>
    </body>
@@ -111,8 +134,6 @@
             });
          }
          
-
-
       });
 
 

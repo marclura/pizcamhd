@@ -128,6 +128,15 @@ def handleRequest(actionid):
 		print(val)
 		camera.meter_mode = val
 
+	# Image effect
+	search = 'image_effect_'
+	index = actionid.find(search)
+
+	if(index != -1):
+		val = actionid[len(search): len(actionid)]
+		print(val)
+		camera.image_effect = val
+
 	# brightness
 	search = 'brightness_'
 	index = actionid.find(search)
@@ -136,6 +145,15 @@ def handleRequest(actionid):
 		val = actionid[len(search): len(actionid)]
 		print(val)
 		camera.brightness = int(val)
+
+	# saturation
+	search = 'saturation_'
+	index = actionid.find(search)
+
+	if(index != -1):
+		val = actionid[len(search): len(actionid)]
+		print(val)
+		camera.saturation = int(val)
 
 	# brightness
 	search = 'brightness_'
@@ -181,6 +199,17 @@ def handleRequest(actionid):
 		val = actionid[len(search): len(actionid)]
 		print(val)
 		camera.sharpness = int(val)
+
+	# sharpness
+	search = 'framerate_'
+	index = actionid.find(search)
+
+	if(index != -1):
+		val = actionid[len(search): len(actionid)]
+		print(val)
+		camera.stop_preview()
+		camera.framerate = int(val)
+		camera.start_preview()
 
 
 	return 'OK 200'
