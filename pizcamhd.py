@@ -9,7 +9,11 @@ import time
 import os
 import socket
 import netifaces
+from datetime import datetime
 from flask import Flask, render_template
+
+
+camera_name = 'pizcamhd1'
 
 
 GPIO.setwarnings(False)
@@ -210,6 +214,15 @@ def handleRequest(actionid):
 		camera.stop_preview()
 		camera.framerate = int(val)
 		camera.start_preview()
+
+
+	# Capture image
+	path = 'capture/'
+	if(actionid == 'capture_image'):
+		date = datetime.now()
+		output_file = path + camera_name + '_' + date.strftime("%d-%m-%Y") + "_" + date.strftime("%H-%M-%S") + '.png'
+		print(f'capture image {output_file}')
+		camera.capture(output_file, 'png')
 
 
 	return 'OK 200'

@@ -4,107 +4,128 @@
       <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
    </head>
    <body>
-      <h1>PIZCAMHD</h1>
-      <section id="button_container">
-         <button id="vflip">vflip</button>
-         <button id="hflip">hflip</button>
-         <button id="start_preview" >start preview</button>
-         <label for="framerate">framerate</label>
-         <input type="number" min="0" max="1000" value="30" id="framerate" name="framerate">
-         <h2>Various</h2>
-         <button id="video_denoise">Video denoise</button>
-         <button id="video_stabilization">Video Stabilization</button>
-         <h2>AWB mode</h2>
-         <button id="awb_off">off</button>
-         <button id="awb_auto">auto</button>
-         <button id="awb_sunlight">sunlight</button>
-         <button id="awb_cloudy">cloudy</button>
-         <button id="awb_shade">shade</button>
-         <button id="awb_tungsten">tungsten</button>
-         <button id="awb_fluorescent">fluorescent</button>
-         <button id="awb_incandescent">incandescent</button>
-         <button id="awb_flash">flash</button>
-         <button id="awb_horizon">horizon</button>
-         <h2>ISO</h2>
-         <button id="iso_100">100</button>
-         <button id="iso_200">200</button>
-         <button id="iso_320">320</button>
-         <button id="iso_400">400</button>
-         <button id="iso_500">500</button>
-         <button id="iso_640">640</button>
-         <button id="iso_800">800</button>
-         <button id="iso_1000">1000</button>
-         <button id="iso_1200">1200</button>
-         <button id="iso_1600">1600</button>
-         <h2>Exposure mode</h2>
-         <button id="exp_mode_off">off</button>
-         <button id="exp_mode_auto">auto</button>
-         <button id="exp_mode_night">night</button>
-         <button id="exp_mode_nightpreview">nightpreview</button>
-         <button id="exp_mode_backlight">backlight</button>
-         <button id="exp_mode_spotlight">spotlight</button>
-         <button id="exp_mode_sports">sports</button>
-         <button id="exp_mode_snow">snow</button>
-         <button id="exp_mode_beach">beach</button>
-         <button id="exp_mode_verylong">verylong</button>
-         <button id="exp_mode_fixedfps">fixedfps</button>
-         <button id="exp_mode_antishake">antishake</button>
-         <h2>Exposure</h2>
-         <label for="exposure_compensation">Exposure compensation</label>
-         <input type="range" min="-25" max="25" value="0" class="slider" id="exposure_compensation" name="exposure_compensation">
-         <label for="shutter_speed">Shutter speed</label>
-         <input type="range" min="0" max="100000" value="0" class="slider" id="shutter_speed" name="shutter_speed">
-         <h2>DRC strength</h2>
-         <button id="drc_off">off</button>
-         <button id="drc_low">low</button>
-         <button id="drc_medium">medium</button>
-         <button id="drc_high">high</button>
-         <h2>Meter mode</h2>
-         <button id="meter_average">average</button>
-         <button id="meter_spot">spot</button>
-         <button id="meter_backlit">backlit</button>
-         <button id="meter_matrix">matrix</button>
-         <h2>Image control</h2>
-         <label for="contrast">Contrast</label>
-         <input type="range" min="-100" max="100" value="0" class="slider" id="contrast" name="contrast">
-         <label for="brightness">Brightness</label>
-         <input type="range" min="0" max="100" value="50" class="slider" id="brightness" name="brightness">
-         <label for="saturation">Saturation</label>
-         <input type="range" min="-100" max="100" value="50" class="slider" id="saturation" name="saturation">
-         <label for="sharpness">Sharpness</label>
-         <input type="range" min="-100" max="100" value="0" class="slider" id="sharpness" name="sharpness">
-         <h2>Effects</h2>
-         <button id="image_effect_none">none</button>
-         <button id="image_effect_negative">negative</button>
-         <button id="image_effect_solarize">solarize</button>
-         <button id="image_effect_sketch">sketch</button>
-         <button id="image_effect_denoise">denoise</button>
-         <button id="image_effect_emboss">emboss</button>
-         <button id="image_effect_oilpaint">oilpaint</button>
-         <button id="image_effect_hatch">hatch</button>
-         <button id="image_effect_gpen">gpen</button>
-         <button id="image_effect_pastel">pastel</button>
-         <button id="image_effect_watercolor">watercolor</button>
-         <button id="image_effect_film">film</button>
-         <button id="image_effect_blur">blur</button>
-         <button id="image_effect_saturation">saturation</button>
-         <button id="image_effect_colorswap">colorswap</button>
-         <button id="image_effect_washedout">washedout</button>
-         <button id="image_effect_posterise">posterise</button>
-         <button id="image_effect_colorpoint">colorpoint</button>
-         <button id="image_effect_colorbalance">colorbalance</button>
-         <button id="image_effect_cartoon">cartoon</button>
-         <button id="image_effect_deinterlace1">deinterlace1</button>
-         <button id="image_effect_deinterlace2">deinterlace2</button>
-         
+      <nav>
+         <ul>
+            <li>Settings</li>
+            <li>Capture</li>
+         </ul>
+      </nav>
 
-      </section>
+      <h1>PIZCAMHD</h1>
+
+      <div id="setting_page">
+         <section id="setting_page_inputs">
+            <button id="vflip">vflip</button>
+            <button id="hflip">hflip</button>
+            <button id="start_preview" >start preview</button>
+            <label for="framerate">framerate</label>
+            <input type="number" min="0" max="1000" value="30" id="framerate" name="framerate">
+            <h2>Various</h2>
+            <button id="video_denoise">Video denoise</button>
+            <button id="video_stabilization">Video Stabilization</button>
+            <h2>AWB mode</h2>
+            <button id="awb_off">off</button>
+            <button id="awb_auto">auto</button>
+            <button id="awb_sunlight">sunlight</button>
+            <button id="awb_cloudy">cloudy</button>
+            <button id="awb_shade">shade</button>
+            <button id="awb_tungsten">tungsten</button>
+            <button id="awb_fluorescent">fluorescent</button>
+            <button id="awb_incandescent">incandescent</button>
+            <button id="awb_flash">flash</button>
+            <button id="awb_horizon">horizon</button>
+            <h2>ISO</h2>
+            <button id="iso_100">100</button>
+            <button id="iso_200">200</button>
+            <button id="iso_320">320</button>
+            <button id="iso_400">400</button>
+            <button id="iso_500">500</button>
+            <button id="iso_640">640</button>
+            <button id="iso_800">800</button>
+            <button id="iso_1000">1000</button>
+            <button id="iso_1200">1200</button>
+            <button id="iso_1600">1600</button>
+            <h2>Exposure mode</h2>
+            <button id="exp_mode_off">off</button>
+            <button id="exp_mode_auto">auto</button>
+            <button id="exp_mode_night">night</button>
+            <button id="exp_mode_nightpreview">nightpreview</button>
+            <button id="exp_mode_backlight">backlight</button>
+            <button id="exp_mode_spotlight">spotlight</button>
+            <button id="exp_mode_sports">sports</button>
+            <button id="exp_mode_snow">snow</button>
+            <button id="exp_mode_beach">beach</button>
+            <button id="exp_mode_verylong">verylong</button>
+            <button id="exp_mode_fixedfps">fixedfps</button>
+            <button id="exp_mode_antishake">antishake</button>
+            <h2>Exposure</h2>
+            <label for="exposure_compensation">Exposure compensation</label>
+            <input type="range" min="-25" max="25" value="0" class="slider" id="exposure_compensation" name="exposure_compensation">
+            <label for="shutter_speed">Shutter speed</label>
+            <input type="range" min="0" max="100000" value="0" class="slider" id="shutter_speed" name="shutter_speed">
+            <h2>DRC strength</h2>
+            <button id="drc_off">off</button>
+            <button id="drc_low">low</button>
+            <button id="drc_medium">medium</button>
+            <button id="drc_high">high</button>
+            <h2>Meter mode</h2>
+            <button id="meter_average">average</button>
+            <button id="meter_spot">spot</button>
+            <button id="meter_backlit">backlit</button>
+            <button id="meter_matrix">matrix</button>
+            <h2>Image control</h2>
+            <label for="contrast">Contrast</label>
+            <input type="range" min="-100" max="100" value="0" class="slider" id="contrast" name="contrast">
+            <label for="brightness">Brightness</label>
+            <input type="range" min="0" max="100" value="50" class="slider" id="brightness" name="brightness">
+            <label for="saturation">Saturation</label>
+            <input type="range" min="-100" max="100" value="50" class="slider" id="saturation" name="saturation">
+            <label for="sharpness">Sharpness</label>
+            <input type="range" min="-100" max="100" value="0" class="slider" id="sharpness" name="sharpness">
+            <h2>Effects</h2>
+            <button id="image_effect_none">none</button>
+            <button id="image_effect_negative">negative</button>
+            <button id="image_effect_solarize">solarize</button>
+            <button id="image_effect_sketch">sketch</button>
+            <button id="image_effect_denoise">denoise</button>
+            <button id="image_effect_emboss">emboss</button>
+            <button id="image_effect_oilpaint">oilpaint</button>
+            <button id="image_effect_hatch">hatch</button>
+            <button id="image_effect_gpen">gpen</button>
+            <button id="image_effect_pastel">pastel</button>
+            <button id="image_effect_watercolor">watercolor</button>
+            <button id="image_effect_film">film</button>
+            <button id="image_effect_blur">blur</button>
+            <button id="image_effect_saturation">saturation</button>
+            <button id="image_effect_colorswap">colorswap</button>
+            <button id="image_effect_washedout">washedout</button>
+            <button id="image_effect_posterise">posterise</button>
+            <button id="image_effect_colorpoint">colorpoint</button>
+            <button id="image_effect_colorbalance">colorbalance</button>
+            <button id="image_effect_cartoon">cartoon</button>
+            <button id="image_effect_deinterlace1">deinterlace1</button>
+            <button id="image_effect_deinterlace2">deinterlace2</button>
+            
+
+         </section>
+      </div>
+      <div id="capture_page">
+         <h2>Capture</h2>
+         <button id="capture_image_button">Capture image</button>
+      </div>
    </body>
 
    <script>
-      var button_controller = document.getElementById('button_container');
 
-      button_controller.childNodes.forEach(element => {
+
+
+      /*******************************
+       *  setting page
+      *******************************/
+
+      var setting_page_inputs = document.getElementById('setting_page_inputs');
+
+      setting_page_inputs.childNodes.forEach(element => {
 
          if(element.tagName == 'BUTTON') {
             element.addEventListener('click', function(event) {
@@ -135,6 +156,30 @@
          }
          
       });
+
+
+      /*******************************
+       *  capture page
+      *******************************/
+
+      let capture_image_button = document.getElementById('capture_image_button').addEventListener('click', function(element) {
+            var tar = 'capture_image';
+            console.log(tar);
+
+            $.getJSON('/'+tar,
+               function(data) {
+
+               });
+
+            return false;
+
+      });
+
+      // update image list
+
+
+
+
 
 
    </script>
