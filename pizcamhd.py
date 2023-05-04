@@ -7,18 +7,29 @@ import picamera
 import RPi.GPIO as GPIO
 import time
 import os
-import psutil
+import socket
+import netifaces
 from flask import Flask, render_template
 
-GPIO.setmode(GPIO.BCM)
+GPIO.setwarnings(False)
+GPIO.setmode(GPIO.BCM)  # set up GPIO numbering
+
+GPIO.setup(17, GPIO.IN) # rotate
+GPIO.setup(27, GPIO.IN) # power off
+GPIO.setup(22, GPIO.OUT) # led
+
+addrs = netifaces.ifaddresses('wlan0')
+ip_address = addrs[netifaces.AF_INET][0]['addr']
 
 
 try:
+	
 	camera = picamera.PiCamera()
 	camera.framerate = 30
 	camera.vflip = True
 	camera.hflip = True
 	camera.start_preview()
+	GPIO.output(22, 1)
 
 except:
 	print('ERROR: Camera NOT started!')
@@ -27,6 +38,7 @@ else:
 	print('OK: Camera started!')
 
 app = Flask(__name__)
+
 
 
 @app.route('/')
@@ -52,8 +64,10 @@ def handleRequest(actionid):
 	elif (actionid == 'start_preview'):
 		if (camera.previewing):
 			camera.stop_preview()
+			GPIO.output(22, 0)
 		else:
 			camera.start_preview()
+			GPIO.output(22, 1)
 
 	if(actionid == 'video_denoise'):
 		if(camera.video_denoise):
@@ -83,7 +97,7 @@ def handleRequest(actionid):
 	if(index != -1):
 		val = actionid[len(search): len(actionid)]
 		print(val)
-		camera.iso = val
+		camera.iso = int(val)
 
 	# Exposure mode
 	search = 'exp_mode_'
@@ -118,7 +132,7 @@ def handleRequest(actionid):
 
 if __name__ == '__main__':
 
-	app.run(debug=True, port=80, host='0.0.0.0')
+	app.run(debug=True, port=80, host=ip_address)
 
 
 
