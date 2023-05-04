@@ -11,6 +11,7 @@ import socket
 import netifaces
 from flask import Flask, render_template
 
+
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)  # set up GPIO numbering
 
@@ -18,13 +19,14 @@ GPIO.setup(17, GPIO.IN) # rotate
 GPIO.setup(27, GPIO.IN) # power off
 GPIO.setup(22, GPIO.OUT) # led
 
+'''
 addrs = netifaces.ifaddresses('wlan0')
 ip_address = addrs[netifaces.AF_INET][0]['addr']
+'''
 
+camera = picamera.PiCamera()
 
 try:
-	
-	camera = picamera.PiCamera()
 	camera.framerate = 30
 	camera.vflip = True
 	camera.hflip = True
@@ -126,13 +128,68 @@ def handleRequest(actionid):
 		print(val)
 		camera.meter_mode = val
 
+	# brightness
+	search = 'brightness_'
+	index = actionid.find(search)
+
+	if(index != -1):
+		val = actionid[len(search): len(actionid)]
+		print(val)
+		camera.brightness = int(val)
+
+	# brightness
+	search = 'brightness_'
+	index = actionid.find(search)
+
+	if(index != -1):
+		val = actionid[len(search): len(actionid)]
+		print(val)
+		camera.brightness = int(val)
+
+	# contrast
+	search = 'contrast_'
+	index = actionid.find(search)
+
+	if(index != -1):
+		val = actionid[len(search): len(actionid)]
+		print(val)
+		camera.contrast = int(val)
+
+	# exposure_compensation
+	search = 'exposure_compensation_'
+	index = actionid.find(search)
+
+	if(index != -1):
+		val = actionid[len(search): len(actionid)]
+		print(val)
+		camera.exposure_compensation = int(val)
+
+	# shutter_speed
+	search = 'shutter_speed_'
+	index = actionid.find(search)
+
+	if(index != -1):
+		val = actionid[len(search): len(actionid)]
+		print(val)
+		camera.shutter_speed = int(val)
+
+	# sharpness
+	search = 'sharpness_'
+	index = actionid.find(search)
+
+	if(index != -1):
+		val = actionid[len(search): len(actionid)]
+		print(val)
+		camera.sharpness = int(val)
+
 
 	return 'OK 200'
 
 
 if __name__ == '__main__':
 
-	app.run(debug=True, port=80, host=ip_address)
+	#app.run(debug=False, port=80, host=ip_address)
+	app.run(debug=False, port=80, host='0.0.0.0')
 
 
 

@@ -47,6 +47,11 @@
          <button id="exp_mode_verylong">verylong</button>
          <button id="exp_mode_fixedfps">fixedfps</button>
          <button id="exp_mode_antishake">antishake</button>
+         <h2>Exposure</h2>
+         <label for="exposure_compensation">Exposure compensation</label>
+         <input type="range" min="-25" max="25" value="0" class="slider" id="exposure_compensation" name="exposure_compensation">
+         <label for="shutter_speed">Shutter speed</label>
+         <input type="range" min="0" max="100000" value="0" class="slider" id="shutter_speed" name="shutter_speed">
          <h2>DRC strength</h2>
          <button id="drc_off">off</button>
          <button id="drc_low">low</button>
@@ -57,6 +62,14 @@
          <button id="meter_spot">spot</button>
          <button id="meter_backlit">backlit</button>
          <button id="meter_matrix">matrix</button>
+         <h2>Image control</h2>
+         <label for="contrast">Contrast</label>
+         <input type="range" min="-100" max="100" value="0" class="slider" id="contrast" name="contrast">
+         <label for="brightness">Brightness</label>
+         <input type="range" min="0" max="100" value="50" class="slider" id="brightness" name="brightness">
+         <label for="sharpness">Sharpness</label>
+         <input type="range" min="-100" max="100" value="0" class="slider" id="sharpness" name="sharpness">
+         
          
 
 
@@ -66,18 +79,42 @@
    </body>
 
    <script>
-      var button_controller = document.getElementById('button_container').addEventListener('click', function(event) {
-         if(event.target.nodeName == "BUTTON") {
-            var tar = event.target.id;
-            console.log(tar);
+      var button_controller = document.getElementById('button_container');
 
-            $.getJSON('/'+tar,
-               function(data) {
+      button_controller.childNodes.forEach(element => {
 
-               });
+         if(element.tagName == 'BUTTON') {
+            element.addEventListener('click', function(event) {
+               var tar = event.target.id;
+               console.log(tar);
 
-            return false;
+               $.getJSON('/'+tar,
+                  function(data) {
+
+                  });
+
+               return false;
+            });
          }
+
+         if(element.tagName == 'INPUT') {
+            element.addEventListener('change', function(event) {
+               var tar = event.target.id + '_' + element.value;
+               console.log(tar);
+
+               $.getJSON('/'+tar,
+                  function(data) {
+
+                  });
+
+               return false;
+            });
+         }
+         
+
+
       });
+
+
    </script>
 </html>
