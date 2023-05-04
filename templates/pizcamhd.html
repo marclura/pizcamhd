@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+   <head>
+      <title>{{ title }}</title>
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+   </head>
+   <body>
+      <h1>PIZCAMHD</h1>
+      <section id="button_container">
+         <button id="vflip">vflip</button>
+         <button id="hflip">hflip</button>
+         <button id="start_preview">start preview</button>
+         <h2>Various</h2>
+         <button id="video_denoise">Video denoise</button>
+         <button id="video_stabilization">Video Stabilization</button>
+         <h2>AWB mode</h2>
+         <button id="awb_off">off</button>
+         <button id="awb_auto">auto</button>
+         <button id="awb_sunlight">sunlight</button>
+         <button id="awb_cloudy">cloudy</button>
+         <button id="awb_shade">shade</button>
+         <button id="awb_tungsten">tungsten</button>
+         <button id="awb_fluorescent">fluorescent</button>
+         <button id="awb_incandescent">incandescent</button>
+         <button id="awb_flash">flash</button>
+         <button id="awb_horizon">horizon</button>
+         <h2>ISO</h2>
+         <button id="iso_100">100</button>
+         <button id="iso_200">200</button>
+         <button id="iso_320">320</button>
+         <button id="iso_400">400</button>
+         <button id="iso_500">500</button>
+         <button id="iso_640">640</button>
+         <button id="iso_800">800</button>
+         <h2>Exposure mode</h2>
+         <button id="exp_mode_off">off</button>
+         <button id="exp_mode_auto">auto</button>
+         <button id="exp_mode_night">night</button>
+         <button id="exp_mode_nightpreview">nightpreview</button>
+         <button id="exp_mode_backlight">backlight</button>
+         <button id="exp_mode_spotlight">spotlight</button>
+         <button id="exp_mode_sports">sports</button>
+         <button id="exp_mode_snow">snow</button>
+         <button id="exp_mode_beach">beach</button>
+         <button id="exp_mode_verylong">verylong</button>
+         <button id="exp_mode_fixedfps">fixedfps</button>
+         <button id="exp_mode_antishake">antishake</button>
+         <h2>DRC strength</h2>
+         <button id="drc_off">off</button>
+         <button id="drc_low">low</button>
+         <button id="drc_medium">medium</button>
+         <button id="drc_high">high</button>
+         <h2>Meter mode</h2>
+         <button id="meter_average">average</button>
+         <button id="meter_spot">spot</button>
+         <button id="meter_backlit">backlit</button>
+         <button id="meter_matrix">matrix</button>
+         
+
+
+
+
+      </section>
+   </body>
+
+   <script>
+      var button_controller = document.getElementById('button_container').addEventListener('click', function(event) {
+         if(event.target.nodeName == "BUTTON") {
+            var tar = event.target.id;
+            console.log(tar);
+
+            $.getJSON('/'+tar,
+               function(data) {
+
+               });
+
+            return false;
+         }
+      });
+   </script>
+</html>
