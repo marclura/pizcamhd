@@ -236,17 +236,17 @@ def run_threaded(job_function):
 
 def read_buttons():
 	try:
-		# Rotation button
-		if GPIO.input(17) == 1 and  old_btn_rotate == 0:
-			old_btn_rotate = 1
-			if rotation <= 2:
-				rotation += 1
-			else:
-				rotation = 0
-			rotate()
-		elif GPIO.input(17) == 0 and old_btn_rotate == 1:
-			old_btn_rotate = 0
-
+		while True:
+			# Rotation button
+			if GPIO.input(17) == 1 and  old_btn_rotate == 0:
+				old_btn_rotate = 1
+				if rotation <= 2:
+					rotation += 1
+				else:
+					rotation = 0
+				rotate()
+			elif GPIO.input(17) == 0 and old_btn_rotate == 1:
+				old_btn_rotate = 0
 	finally:
 		GPIO.cleanup()
 
@@ -265,11 +265,12 @@ if __name__ == '__main__':
 	else:
 		print('Camera started!')
 
+	run_threaded(read_buttons)
+
 	#app.run(debug=False, port=80, host=ip_address)
 	app.run(debug=False, port=80, host='0.0.0.0')
 
-	while True:
-		run_threaded(read_buttons)
-		time.sleep(0.01)
+	
+	
 
 	
