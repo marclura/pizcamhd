@@ -234,9 +234,22 @@ def handleRequest(actionid):
 
 if __name__ == '__main__':
 
+	try:
+		camera.framerate = 30
+		camera.vflip = True
+		camera.hflip = True
+		camera.start_preview()
+		GPIO.output(22, 1)
+
+	except:
+		print('Camera not started!')
+	else:
+		print('Camera started!')
+
 	#app.run(debug=False, port=80, host=ip_address)
 	app.run(debug=False, port=80, host='0.0.0.0')
 
+	""""
 	try:
 		camera.framerate = 30
 		camera.vflip = True
@@ -262,3 +275,4 @@ if __name__ == '__main__':
 
 	finally:
 		GPIO.cleanup()
+	"""
