@@ -245,7 +245,7 @@ def handleRequest(actionid):
 if __name__ == '__main__':
 
 	#app.run(debug=False, port=80, host=ip_address)
-	app.run(debug=False, port=80, host='0.0.0.0')
+	#app.run(debug=False, port=80, host='0.0.0.0')
 
 	try:
 		while True:
