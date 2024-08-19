@@ -30,17 +30,6 @@ ip_address = addrs[netifaces.AF_INET][0]['addr']
 
 camera = picamera.PiCamera()
 
-def rotate():
-	if rotation == 0:
-			camera.hflip = False
-			camera.vflip = False
-	elif rotation == 1:
-			camera.vflip = True
-	elif rotation == 2:
-			camera.hflip = True
-	elif rotation == 3:
-			camera.vflip = False
-
 app = Flask(__name__)
 
 @app.route('/')
@@ -234,6 +223,8 @@ def run_threaded(job_function):
 def read_buttons():
 	old_btn_rotate = 0
 	rotation = 0
+	rotation_trigger = False
+
 	try:
 		while True:
 			# Rotation button
@@ -243,9 +234,22 @@ def read_buttons():
 					rotation += 1
 				else:
 					rotation = 0
-				rotate()
+				rotation_trigger = True
 			elif GPIO.input(17) == 0 and old_btn_rotate == 1:
 				old_btn_rotate = 0
+
+			if(rotation_trigger):
+				if rotation == 0:
+						camera.hflip = False
+						camera.vflip = False
+				elif rotation == 1:
+						camera.vflip = True
+				elif rotation == 2:
+						camera.hflip = True
+				elif rotation == 3:
+						camera.vflip = False
+				rotation_trigger = False
+
 	finally:
 		GPIO.cleanup()
 
