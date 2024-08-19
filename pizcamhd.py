@@ -16,7 +16,7 @@ from flask import Flask, render_template
 
 camera_name = 'pizcamhd1'
 rotation = 0
-old_btn_rotate = 0
+
 
 
 GPIO.setwarnings(False)
@@ -235,6 +235,7 @@ def run_threaded(job_function):
 	job_thread.start()
 
 def read_buttons():
+	old_btn_rotate = 0
 	try:
 		while True:
 			# Rotation button
