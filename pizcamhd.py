@@ -49,6 +49,9 @@ try:
 	camera.hflip = True
 	camera.start_preview()
 	GPIO.output(22, 1)
+
+	app = Flask(__name__)
+	
 	while True:
 		# Rotation button
 		if GPIO.input(17) == 1 and  old_btn_rotate == 0:
@@ -74,7 +77,7 @@ else:
 finally:
 	GPIO.cleanup()
 
-app = Flask(__name__)
+
 
 
 
