@@ -32,18 +32,47 @@ ip_address = addrs[netifaces.AF_INET][0]['addr']
 
 camera = picamera.PiCamera()
 
+def rotate():
+	if rotation == 0:
+			camera.hflip = False
+			camera.vflip = False
+	elif rotation == 1:
+			camera.vflip = True
+	elif rotation == 2:
+			camera.hflip = True
+	elif rotation == 3:
+			camera.vflip = False
+
 try:
 	camera.framerate = 30
 	camera.vflip = True
 	camera.hflip = True
 	camera.start_preview()
 	GPIO.output(22, 1)
+	while True:
+		# Rotation button
+		if GPIO.input(17) == 1 and  old_btn_rotate == 0:
+			# print( "Rotate pressed")
+			old_btn_rotate = 1
+			# camera.vflip = True
+			if rotation <= 2:
+				rotation += 1
+			else:
+				rotation = 0
+			rotate()
+		elif GPIO.input(17) == 0 and old_btn_rotate == 1:
+			old_btn_rotate = 0
+			# camera.vflip = False
+			# print("Rotate released")
 
 except:
 	print('ERROR: Camera NOT started!')
 
 else:
 	print('OK: Camera started!')
+
+finally:
+	GPIO.cleanup()
 
 app = Flask(__name__)
 
@@ -58,16 +87,7 @@ def index():
 
 @app.route('/<actionid>')
 
-def rotate():
-	if rotation == 0:
-			camera.hflip = False
-			camera.vflip = False
-	elif rotation == 1:
-			camera.vflip = True
-	elif rotation == 2:
-			camera.hflip = True
-	elif rotation == 3:
-			camera.vflip = False
+
 
 def handleRequest(actionid):
 	print('Action id: {}'.format(actionid))
@@ -245,7 +265,7 @@ def handleRequest(actionid):
 if __name__ == '__main__':
 
 	#app.run(debug=False, port=80, host=ip_address)
-	#app.run(debug=False, port=80, host='0.0.0.0')
+	app.run(debug=False, port=80, host='0.0.0.0')
 
 	try:
 		while True:
