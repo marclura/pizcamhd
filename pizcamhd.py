@@ -15,9 +15,6 @@ from flask import Flask, render_template
 
 
 camera_name = 'pizcamhd1'
-rotation = 0
-
-
 
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)  # set up GPIO numbering
@@ -236,6 +233,7 @@ def run_threaded(job_function):
 
 def read_buttons():
 	old_btn_rotate = 0
+	rotation = 0
 	try:
 		while True:
 			# Rotation button
