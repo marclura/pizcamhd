@@ -43,10 +43,7 @@ def rotate():
 	elif rotation == 3:
 			camera.vflip = False
 
-
-
 app = Flask(__name__)
-
 
 @app.route('/')
 def index():
@@ -249,20 +246,12 @@ if __name__ == '__main__':
 	#app.run(debug=False, port=80, host=ip_address)
 	app.run(debug=False, port=80, host='0.0.0.0')
 
-	""""
-	try:
-		camera.framerate = 30
-		camera.vflip = True
-		camera.hflip = True
-		camera.start_preview()
-		GPIO.output(22, 1)
 
+	try:
 		while True:
 			# Rotation button
 			if GPIO.input(17) == 1 and  old_btn_rotate == 0:
-				# print( "Rotate pressed")
 				old_btn_rotate = 1
-				# camera.vflip = True
 				if rotation <= 2:
 					rotation += 1
 				else:
@@ -270,9 +259,6 @@ if __name__ == '__main__':
 				rotate()
 			elif GPIO.input(17) == 0 and old_btn_rotate == 1:
 				old_btn_rotate = 0
-				# camera.vflip = False
-				# print("Rotate released")
 
 	finally:
 		GPIO.cleanup()
-	"""
