@@ -5,3 +5,4 @@ Raspberry Pi HDMI webcam with HTML control interface
 
 1) Install pip `sudo apt install python3-pip`
 2) Install netifaces `pip3 install netifaces`
+3) Install Flask `pip install Flask`
