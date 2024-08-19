@@ -14,6 +14,8 @@ from flask import Flask, render_template
 
 
 camera_name = 'pizcamhd1'
+rotation = 0
+old_btn_rotate = 0
 
 
 GPIO.setwarnings(False)
@@ -55,6 +57,18 @@ def index():
 	return render_template('pizcamhd.html', **templateData)
 
 @app.route('/<actionid>')
+
+def rotate():
+	if rotation == 0:
+			camera.hflip = False
+			camera.vflip = False
+	elif rotation == 1:
+			camera.vflip = True
+	elif rotation == 2:
+			camera.hflip = True
+	elif rotation == 3:
+			camera.vflip = False
+
 def handleRequest(actionid):
 	print('Action id: {}'.format(actionid))
 	if(actionid == 'vflip'):
@@ -233,8 +247,23 @@ if __name__ == '__main__':
 	#app.run(debug=False, port=80, host=ip_address)
 	app.run(debug=False, port=80, host='0.0.0.0')
 
+	try:
+		while True:
+			# Rotation button
+			if GPIO.input(17) == 1 and  old_btn_rotate == 0:
+				# print( "Rotate pressed")
+				old_btn_rotate = 1
+				# camera.vflip = True
+				if rotation <= 2:
+					rotation += 1
+				else:
+					rotation = 0
+				rotate()
+			elif GPIO.input(17) == 0 and old_btn_rotate == 1:
+				old_btn_rotate = 0
+				# camera.vflip = False
+				# print("Rotate released")
 
-
-
-
-
+		# time.sleep(0.01)
+	finally:
+		GPIO.cleanup()
