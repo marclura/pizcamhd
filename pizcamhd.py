@@ -9,6 +9,7 @@ import time
 import os
 import socket
 import netifaces
+import threading
 from datetime import datetime
 from flask import Flask, render_template
 
@@ -229,6 +230,27 @@ def handleRequest(actionid):
 	return 'OK 200'
 
 
+def run_threaded(job_function):
+	job_thread = threading.Thread(target=job_function)
+	job_thread.start()
+
+def read_buttons():
+	try:
+		# Rotation button
+		if GPIO.input(17) == 1 and  old_btn_rotate == 0:
+			old_btn_rotate = 1
+			if rotation <= 2:
+				rotation += 1
+			else:
+				rotation = 0
+			rotate()
+		elif GPIO.input(17) == 0 and old_btn_rotate == 1:
+			old_btn_rotate = 0
+
+	finally:
+		GPIO.cleanup()
+
+
 if __name__ == '__main__':
 
 	try:
@@ -246,19 +268,8 @@ if __name__ == '__main__':
 	#app.run(debug=False, port=80, host=ip_address)
 	app.run(debug=False, port=80, host='0.0.0.0')
 
+	while True:
+		run_threaded(read_buttons)
+		time.sleep(0.01)
 
-	try:
-		while True:
-			# Rotation button
-			if GPIO.input(17) == 1 and  old_btn_rotate == 0:
-				old_btn_rotate = 1
-				if rotation <= 2:
-					rotation += 1
-				else:
-					rotation = 0
-				rotate()
-			elif GPIO.input(17) == 0 and old_btn_rotate == 1:
-				old_btn_rotate = 0
-
-	finally:
-		GPIO.cleanup()
+	
